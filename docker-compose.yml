@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  docker-postgres:
+    restart: always
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_PASSWORD: rootpassword
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+
+  blog-app:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - docker-postgres
+    ports:
+      - 8080:8080
+      - 443:443
+    environment:
+      - MYAPP_JDBC_URL=jdbc:postgresql://docker-postgres:5432/
