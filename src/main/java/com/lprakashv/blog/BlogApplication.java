@@ -1,5 +1,6 @@
 package com.lprakashv.blog;
 
+import com.lprakashv.blog.constants.Role;
 import com.lprakashv.blog.entities.BlogUser;
 import com.lprakashv.blog.repos.UserRepo;
 import java.util.Arrays;
@@ -25,14 +26,14 @@ public class BlogApplication {
 		SpringApplication.run(BlogApplication.class, args);
 	}
 
-	@PostConstruct
+	/*@PostConstruct
 	public void initdb() {
 		BlogUser bu = new BlogUser();
 		bu.setEmail("lprakashv@gmail.com");
 		bu.setUsername("lprakashv");
 		bu.setPassword(new BCryptPasswordEncoder(11).encode("lpv0707"));
-		bu.setRoles(Arrays.asList("ROLE_USER"));
+		bu.setRoles(Arrays.asList(Role.ROLE_ADMIN));
 
 		userRepo.save(bu);
-	}
+	}*/
 }
