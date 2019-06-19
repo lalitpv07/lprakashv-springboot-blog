@@ -16,6 +16,13 @@ spring:
     jdbc:
       initialize-schema: always
 
+  thymeleaf:
+    cache: false
+
+  devtools:
+    livereload:
+      enabled: true
+
 
 ---
 spring:

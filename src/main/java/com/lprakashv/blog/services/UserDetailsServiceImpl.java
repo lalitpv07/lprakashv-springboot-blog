@@ -1,6 +1,6 @@
 package com.lprakashv.blog.services;
 
-import com.lprakashv.blog.entities.BlogUser;
+import com.lprakashv.blog.entities.Person;
 import com.lprakashv.blog.models.BlogUserDetails;
 import com.lprakashv.blog.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     //TODO
-    BlogUser blogUser = userRepo.findByUsername(username).orElse(null);
-    return new BlogUserDetails(blogUser);
+    Person person = userRepo.findByUsername(username).orElse(null);
+    return new BlogUserDetails(person);
   }
 }

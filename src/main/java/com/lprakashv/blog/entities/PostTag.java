@@ -1,7 +1,5 @@
 package com.lprakashv.blog.entities;
 
-import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,18 +12,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Comment implements Serializable {
+public class PostTag {
   @Id
   @GeneratedValue
   private Long id;
 
   @ManyToOne
-  private Person person;
-
-  @ManyToOne
   private Post post;
 
-  private String content;
-
-  private Date commentedOn;
+  private String tag;
 }

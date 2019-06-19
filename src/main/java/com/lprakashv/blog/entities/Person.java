@@ -4,15 +4,20 @@ import com.lprakashv.blog.constants.Role;
 import com.lprakashv.blog.entities.converters.RolesConverter;
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.*;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-public class BlogUser implements Serializable {
+public class Person implements Serializable {
 
   @Id
   @GeneratedValue
@@ -22,6 +27,9 @@ public class BlogUser implements Serializable {
   private String username;
 
   @NotNull
+  private String name;
+
+  @NotNull
   private String password;
 
   @NotNull
@@ -29,7 +37,4 @@ public class BlogUser implements Serializable {
 
   @Convert(converter = RolesConverter.class)
   private List<Role> roles;
-
-  @OneToMany(mappedBy = "author")
-  private List<Post> posts;
 }

@@ -1,0 +1,41 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title}">LPRKASHV's Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="shortcut icon" th:href="@{/images/lpv_logo_small.png}" type="image/png">
+</head>
+
+<nav class="navbar is-light" role="navigation" aria-label="dropdown navigation" th:fragment="navbar">
+    <div class="navbar-brand">
+        <a class="navbar-item" th:href="@{/}">
+            <img th:src="@{/images/lpv_logo.png}">
+        </a>
+    </div>
+    <!--TODO: 1. search bar-->
+    <!--TODO: 2. User (login/signup) / profile button-->
+    <!--TODO: 3. Left drawer for page navigation-->
+    <div class="navbar-menu">
+        <div class="navbar-item has-dropdown">
+            <a class="navbar-link">
+                Docs
+            </a>
+
+            <div class="navbar-dropdown">
+                <!--            TODO-->
+            </div>
+        </div>
+    </div>
+</nav>
+
+<footer class="footer" th:fragment="footer">
+    <div class="content has-text-centered">
+        <p>
+            <!--TODO: link to self profile-->
+            <strong>Blog</strong> by Lalit Vatsal</a>.
+        </p>
+    </div>
+</footer>
+</html>

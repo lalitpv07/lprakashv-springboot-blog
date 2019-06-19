@@ -1,0 +1,105 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: head"></head>
+<body>
+<div th:replace="base :: navbar"></div>
+<section class="hero is-primary is-bold">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title" th:text="${post.title}"></h1>
+            <h3 class="subtitle is-6" th:text="${post.author.name}"></h3>
+            <div class="level">
+                <div class="level-right">
+                    <div class="level-item">
+                        <h3 class="subtitle is-6"
+                            th:text="${#dates.format(post.postedOn, 'dd/MMM/yyyy HH:mm')}"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br/>
+<div class="container is-fluid box">
+    <div class="content is-medium">
+        <span th:utext="${post.content}"></span>
+        <br/>
+        <div class="level">
+            <div class="level-left">
+                <span class="tag level-item" th:each="postTag: ${post.postTags}"
+                      th:text="${postTag.tag}"></span>
+            </div>
+        </div>
+        <div class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <p class="buttons">
+                        <!--TODO-->
+                        <a class="button">
+                                <span class="icon is-small">
+                                    <i class="fas fa-arrow-alt-circle-up"></i>
+                                </span>
+                        </a>
+                        <a class="button is-static" th:text="${postVotes}"></a>
+                        <!--TODO-->
+                        <a class="button">
+                                <span class="icon is-small">
+                                    <i class="fas fa-arrow-alt-circle-down"></i>
+                                </span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" id="blog-userActivities-container">
+    <h3 class="title is-5">Comments:</h3>
+    <!--TODO: pagination in userActivities-->
+    <div th:each="comment: ${comments}">
+        <div class="box">
+            <article class="media">
+                <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="https://bulma.io/images/placeholders/128x128.png">
+                    </p>
+                </figure>
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong th:text="${comment.person.name}"></strong>
+                            <small th:text="${comment.person.username}"></small>
+                            <small th:text="${(#dates.createNow().time - comment.commentedOn.time)/60000 + ' m'}"></small>
+                            <br>
+                            <span th:text="${comment.content}"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="media-right">
+                    <p class="buttons">
+                        <!--TODO-->
+                        <a class="button">
+                                <span class="icon is-small">
+                                    <i class="fas fa-arrow-alt-circle-up"></i>
+                                </span>
+                        </a>
+                        <a class="button is-static" th:text="${commentVotes[comment.id.toString()]}"></a>
+                        <!--TODO-->
+                        <a class="button">
+                                <span class="icon is-small">
+                                    <i class="fas fa-arrow-alt-circle-down"></i>
+                                </span>
+                        </a>
+                        <!--TODO-->
+                        <a class="button">
+                            <button class="delete"></button>
+                        </a>
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+</body>
+<footer th:replace="base :: footer"/>
+</html>

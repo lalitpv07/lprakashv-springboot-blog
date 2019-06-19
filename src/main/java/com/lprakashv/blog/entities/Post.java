@@ -6,8 +6,9 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
@@ -23,20 +24,17 @@ public class Post implements Serializable {
 
   @NotNull
   @ManyToOne
-  private BlogUser author;
+  private Person author;
 
   @NotNull
   private String title;
 
-  @OneToMany(mappedBy = "post")
-  private List<PostElement> postElements;
+  @Column(columnDefinition = "TEXT")
+  private String content;
 
-  private BigInteger votes;
+  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+  private List<PostTag> postTags;
 
-  @OneToMany(mappedBy = "post")
-  private List<Comment> comments;
-
-  @CreatedDate
   @Temporal(TemporalType.TIMESTAMP)
   private Date postedOn;
 }
