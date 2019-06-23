@@ -37,17 +37,11 @@ public class BlogController {
 
   @GetMapping("/blog/{slug}")
   public String blog(@PathVariable String slug, Model model) {
+    //TODO
     Post post = postRepo.findBySlug(slug).get();
     List<Comment> comments = commentRepo.findByPostIdOrderByCommentedOnDesc(post.getId());
     model.addAttribute("title", post.getTitle());
     model.addAttribute("post", post);
-    model.addAttribute("comments", comments);
-    model.addAttribute("postVotes", postVoteRepo.findByPostId(post.getId()).size());
-    Map<String, Integer> commentsMap = new HashMap<>();
-    for (Comment c: comments) {
-      commentsMap.put(c.getId().toString(), commentVoteRepo.findByCommentId(c.getId()).size());
-    }
-    model.addAttribute("commentVotes", commentsMap);
     return "blog";
   }
 }

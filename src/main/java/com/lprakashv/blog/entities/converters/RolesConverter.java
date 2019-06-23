@@ -1,7 +1,6 @@
 package com.lprakashv.blog.entities.converters;
 
 import com.lprakashv.blog.constants.Role;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

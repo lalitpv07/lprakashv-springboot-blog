@@ -1,10 +1,8 @@
 package com.lprakashv.blog.entities;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,9 +16,12 @@ public class CommentVote implements Serializable {
   @GeneratedValue
   private Long id;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   private Comment comment;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   private Person person;
+
+  @NotNull
+  private Boolean vote;
 }
