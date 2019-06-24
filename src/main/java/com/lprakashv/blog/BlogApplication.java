@@ -43,8 +43,10 @@ public class BlogApplication {
 		userRepo.save(bu);
 
 		Post post = new Post();
+
 		post.setSlug("first-post");
 		post.setTitle("First Post");
+
 		post.setAuthor(bu);
 
 		String sb = "<h3>Some Title</h3>" +
@@ -57,21 +59,8 @@ public class BlogApplication {
 				"In this example, we define a fragment for a generic form field:</p>";
 		post.setContent(sb);
 
-		/*PostTag pt1 = new PostTag();
-		pt1.setPost(post);
-		pt1.setTag("tag1");
-
-		PostTag pt2 = new PostTag();
-		pt2.setPost(post);
-		pt2.setTag("tag2");
-
-		PostTag pt3 = new PostTag();
-		pt3.setPost(post);
-		pt3.setTag("tag3");*/
-
-
 		post.setPostedOn(new Date());
-		//post.setPostTags(Arrays.asList(pt1, pt2, pt3));
+
 		post.addTag("tag1");
 		post.addTag("tag2");
 		post.addTag("tag3");
@@ -83,19 +72,5 @@ public class BlogApplication {
 
 		c2.addCommntVote(bu, false);
 		commentRepo.save(c2);
-
-		/*Comment c1 = new Comment();
-		c1.setPerson(bu);
-		c1.setContent("This is my first comment");
-		c1.setCommentedOn(new Date(System.currentTimeMillis()-700000L));
-		c1.setPost(post);
-
-		Comment c2 = new Comment();
-		c2.setPerson(bu);
-		c2.setContent("This is my second comment");
-		c2.setCommentedOn(new Date(System.currentTimeMillis()-70000L));
-		c2.setPost(post);
-
-		commentRepo.saveAll(Arrays.asList(c1, c2));*/
 	}
 }
